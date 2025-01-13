@@ -5,7 +5,9 @@
 
   <ul>
     <li *ngFor="let ingredient of selectedIngredients">
-      {{ ingredient.name }} - Carbs: {{ getCarbohydrates(ingredient) }}
+      {{ ingredient.name }} - Carbs: {{ getCarbohydrates(ingredient) }} <button class="btn btn-outline-light" 
+      type="button"
+      (click)="removeIngredient(ingredient.id)">Delete</button>
     </li>
   </ul>
 

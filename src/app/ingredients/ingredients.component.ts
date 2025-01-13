@@ -33,6 +33,11 @@ export class IngredientsComponent implements OnInit {
     // Logic to open the search component, can be done using routing or modals
   }
 
+  removeIngredient(id : number){
+    this.ingredientService.removeIngredient(id);
+    this.calculateTotalCarbs();
+  }
+
   calculateTotalCarbs() {
     this.totalCarbs = this.ingredientService.calculateTotalCarbs();
     console.log(this.totalCarbs)
