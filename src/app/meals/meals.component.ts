@@ -8,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class MealsComponent {
 
+  calculate(carbs: string, insuline: string, glucose: string, target: string, correction: string){
+    document.getElementById("output")!.innerHTML = (parseInt(carbs)/parseInt(insuline) + (parseInt(glucose) - parseInt(target))/parseInt(correction)).toString();
+  }
 }

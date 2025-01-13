@@ -1,1 +1,22 @@
 <p>meals works!</p>
+<main class="main">
+    <div>
+      
+        <h1>Insuline Calculation logic</h1>
+        <form>
+        eaten carbs:<input type="number" #carbs>
+        carbs per insuline:<input type="number" #insuline>
+        current glucose:<input type="number" #glucose>
+        target glucose:<input type="number" #target>
+        correction factor:<input type="number" #correction>
+        <button 
+          class="btn btn-outline-light" 
+          type="button"
+          (click)="calculate(carbs.value, insuline.value, glucose.value, target.value, correction.value)"
+        >
+          Calculate Insuline
+        </button>
+      </form>
+      <div id="output"></div>
+    </div>
+  </main>
