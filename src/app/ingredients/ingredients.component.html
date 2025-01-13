@@ -1,1 +1,13 @@
 <p>ingredients works!</p>
+
+<div>
+  <button (click)="openSearch()">Add Ingredient</button>
+
+  <ul>
+    <li *ngFor="let ingredient of selectedIngredients">
+      {{ ingredient.name }} - Carbs: {{ getCarbohydrates(ingredient) }}
+    </li>
+  </ul>
+
+  <p>Total Carbs: {{ totalCarbs }}g</p>
+</div>
