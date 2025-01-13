@@ -1,0 +1,41 @@
+:root {
+    --primary: #022B3A;
+    --secondary: #1F7A8C;
+    --tertiary: #6FABC2;
+    --fourth: #BFDBF7;
+    --textcoloring: #FFFFFF;
+    --secondarytextcolor: #E1E5F2;
+    --titlecolor: #BFDBF7;
+}
+
+body{
+    margin: 0px;
+    background-color: white;
+    height: 200px;
+    position: fixed;
+    width: 100%;
+}
+
+nav{
+    background-color: #022B3A;
+    padding: 1%;
+    width: 100%;
+    margin: 0;
+}
+
+button{
+    color: #FFFFFF;
+    border-radius: 0;
+    padding: 16px 32px;
+    font-size: 16px;
+}
+.button1 {
+    background-color: #063545; 
+    color: white; 
+    border: 0px solid #022B3A;
+}
+  
+.button1:hover {
+    background-color: #022B3A;
+    color: white;
+}
