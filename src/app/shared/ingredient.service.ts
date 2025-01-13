@@ -47,7 +47,7 @@ export class IngredientService {
   removeIngredient(id: number) {
     if(this.carbs.length != 1){
       delete this.carbs[this.selectedIngredients.findIndex(ingredient => ingredient.id === id)];
-      this.carbs = this.carbs.filter(e => e);
+      this.carbs = this.carbs.filter(e => e != null);
     }
     else{
       this.carbs = [];
