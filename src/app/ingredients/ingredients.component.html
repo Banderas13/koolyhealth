@@ -1,13 +1,15 @@
 <p>ingredients works!</p>
 
 <div>
-  <button (click)="openSearch()">Add Ingredient</button>
-
   <ul>
     <li *ngFor="let ingredient of selectedIngredients">
-      {{ ingredient.name }} - Carbs: {{ getCarbohydrates(ingredient) }}
+      {{ ingredient.name }} - Carbs: {{ getCarbohydrates(ingredient) }} <button class="btn btn-outline-light" 
+      type="button"
+      (click)="removeIngredient(ingredient.id)">Delete</button>
     </li>
+    <li><button routerLink="/search">+</button></li>
   </ul>
-
   <p>Total Carbs: {{ totalCarbs }}g</p>
 </div>
+
+<router-outlet></router-outlet>
