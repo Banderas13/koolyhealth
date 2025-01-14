@@ -33,9 +33,19 @@ export class IngredientService {
     const carbs = ingredient.nutrition?.nutrients?.find(
       (nutrient: any) => nutrient.name === 'Carbohydrates'
     );
+    const servingsize = ingredient.nutrition?.weightPerServing?.amount;
+    console.log(servingsize)
     this.selectedIngredients.push(ingredient);
-    this.carbs.push(carbs.amount);
+    this.carbs.push(carbs.amount/servingsize*100);
     this.saveToLocalStorage();
+  }
+
+  GetCarbs(ingredient: any){
+    const carbs = ingredient.nutrition?.nutrients?.find(
+      (nutrient: any) => nutrient.name === 'Carbohydrates'
+    );
+    const servingsize = ingredient.nutrition?.weightPerServing?.amount;
+    return(carbs.amount/servingsize*100);
   }
 
   // Get selected ingredients
