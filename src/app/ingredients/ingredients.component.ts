@@ -23,6 +23,19 @@ export class IngredientsComponent implements OnInit {
     this.calculateTotalCarbs();
   }
 
+  calculate(carbs: number, insuline: string, glucose: string, target: string, correction: string){
+    let eatenCarbsToInsuline = (carbs/(parseInt(insuline)|| 0));
+    let targetGlucoseCalculation = correction? 
+      (
+        (
+          ( glucose? parseInt(glucose) : 0) - (target? parseInt(target) : 0)
+        )/parseInt(correction)
+      ) : 0;
+    console.log(targetGlucoseCalculation);
+
+    document.getElementById("output")!.innerHTML = (eatenCarbsToInsuline + targetGlucoseCalculation).toString();  
+  }
+
   getCarbohydrates(ingredient: any): string {
     const carbs = ingredient.nutrition?.nutrients?.find(
       (nutrient: any) => nutrient.name === 'Carbohydrates'

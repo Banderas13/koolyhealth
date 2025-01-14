@@ -11,5 +11,28 @@
   </ul>
   <p>Total Carbs: {{ totalCarbs }}g</p>
 </div>
+<main class="main">
+  <div>
+    
+      <h1>Insuline Calculation logic</h1>
+      <form>
+        <ul>
+          <li>eaten carbs: {{ totalCarbs }}g</li>
+          <li>carbs per insuline:<input type="number" #insuline></li>
+          <li>current glucose:<input type="number" #glucose></li>
+          <li>target glucose:<input type="number" #target></li>
+          <li>correction factor:<input type="number" #correction></li>
+        </ul>
+        <button
+        class="btn btn-outline-light" 
+        type="button"
+        (click)="calculate((totalCarbs), insuline.value, glucose.value, target.value, correction.value)"
+        >
+        Calculate Insuline
+      </button>
+    </form>
+    <div id="output"></div>
+  </div>
+</main>
 
 <router-outlet></router-outlet>
