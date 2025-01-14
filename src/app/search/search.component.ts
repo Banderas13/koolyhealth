@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IngredientService } from '../shared/ingredient.service';
 
 import { FormsModule } from '@angular/forms';
@@ -24,9 +24,15 @@ export class SearchComponent {
   }
 
   addIngredient(ingredient: any) {
-    this.ingredientService.getIngredientInfo(ingredient.id).subscribe(info => {
-      this.ingredientService.addIngredient(info);
-      alert(`${ingredient.name} added to the ingredient list!`);
-    });
+    let consumed = prompt(`How much did you consume of ${ingredient.name} in grams or mililitres? (NUMBERS ONLY)`, '100');
+    if(consumed != null && parseInt(consumed) != 0){
+      this.ingredientService.getIngredientInfo(ingredient.id).subscribe(info => {
+        this.ingredientService.addIngredient(info, parseInt(consumed));
+        alert(`${ingredient.name} added to the ingredient list!`);
+      });
+    }
+    else{
+      alert(`Product not added`);
+    }
   }
 }

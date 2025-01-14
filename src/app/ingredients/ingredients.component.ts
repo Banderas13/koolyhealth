@@ -41,7 +41,7 @@ export class IngredientsComponent implements OnInit {
     const carbs = ingredient.nutrition?.nutrients?.find(
       (nutrient: any) => nutrient.name === 'Carbohydrates'
     );
-      return carbs ? `${this.ingredientService.GetCarbs(ingredient)}${carbs.unit}/100${carbs.unit}` : 'N/A';
+      return carbs ? `${this.ingredientService.GetCarbs(ingredient, ingredient.id)}${carbs.unit}/${this.ingredientService.GetAmount(ingredient, ingredient.id)}${carbs.unit}` : 'N/A';
   }
 
   removeIngredient(id : number){
