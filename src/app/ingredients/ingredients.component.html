@@ -3,9 +3,9 @@
 <div>
   <ul>
     <li *ngFor="let ingredient of selectedIngredients">
-      {{ ingredient.name }} - Carbs: {{ getCarbohydrates(ingredient) }} <button class="btn btn-outline-light" 
+      {{ ingredient.name }} - Carbs: {{ getCarbohydrates(ingredient) }}/100g/ml<button class="btn btn-outline-light" 
       type="button"
-      (click)="removeIngredient(ingredient.id)">Delete</button>
+      (click)="removeIngredient(ingredient.id)">-</button>
     </li>
     <li><button routerLink="/search">+</button></li>
   </ul>
@@ -16,17 +16,32 @@
     
       <h1>Insuline Calculation logic</h1>
       <form>
-        <ul>
-          <li>eaten carbs: {{ totalCarbs }}g</li>
-          <li>carbs per insuline:<input type="number" #insuline></li>
-          <li>current glucose:<input type="number" #glucose></li>
-          <li>target glucose:<input type="number" #target></li>
-          <li>correction factor:<input type="number" #correction></li>
-        </ul>
+        <table>
+          <tr>
+            <td>eaten carbs:</td>
+            <td>{{ totalCarbs }}g</td>
+          </tr>
+          <tr>
+            <td>carbs per insuline:</td>
+            <td><input type="number" #insuline></td>
+          </tr>
+          <tr>
+            <td>current glucose:</td>
+            <td><input type="number" #glucose></td>
+          </tr>
+          <tr>
+            <td>target glucose:</td>
+            <td>120</td>
+          </tr>
+          <tr>
+            <td>correction factor:</td>
+            <td><input type="number" #correction></td>
+          </tr>
+        </table>
         <button
         class="btn btn-outline-light" 
         type="button"
-        (click)="calculate((totalCarbs), insuline.value, glucose.value, target.value, correction.value)"
+        (click)="calculate((totalCarbs), insuline.value, glucose.value, correction.value)"
         >
         Calculate Insuline
       </button>
