@@ -8,15 +8,17 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { SearchComponent } from './search/search.component';
 import { UserComponent } from './user/user.component';
+import { authGuard } from  './auth.guard';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent },
-    { path: 'ingredients', component: IngredientsComponent },
+    { path: '', redirectTo: 'home', pathMatch: 'full'},
+    { path: 'ingredients', canActivate: [authGuard], component: IngredientsComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'meals', component: MealsComponent },
+    { path: 'meals', canActivate: [authGuard], component: MealsComponent },
     { path: 'navbar', component: NavbarComponent },
-    { path: 'recipes', component: RecipesComponent },
+    { path: 'recipes', canActivate: [authGuard], component: RecipesComponent },
     { path: 'registration', component: RegistrationComponent },
-    { path: 'search', component: SearchComponent },
-    { path: 'user', component: UserComponent },
+    { path: 'search', canActivate: [authGuard], component: SearchComponent },
+    { path: 'user', canActivate: [authGuard], component: UserComponent },
 ];
