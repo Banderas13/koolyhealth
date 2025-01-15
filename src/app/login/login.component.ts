@@ -21,18 +21,19 @@ export class LoginComponent {
   ) {}
 
   async onSubmit() {
-    const token = await this.UserService.login(this.username, this.password);
-    if (token) {
-      localStorage.setItem('token', token);
-      
-      // Get the redirect URL from localStorage
-      const redirectUrl = localStorage.getItem('redirectUrl') || '/';
-      localStorage.removeItem('redirectUrl'); // Clean up
-      
-      // Navigate to the protected route or home
-      this.router.navigate([redirectUrl]);
-    } else {
-      alert('Invalid username or password');
-    }
+    this.UserService.login(this.username, this.password).subscribe(token => {
+      if (token) {
+        localStorage.setItem('token', token);
+        
+        // Get the redirect URL from localStorage
+        const redirectUrl = localStorage.getItem('redirectUrl') || '/';
+        localStorage.removeItem('redirectUrl'); // Clean up
+        
+        // Navigate to the protected route or home
+        this.router.navigate([redirectUrl]);
+      } else {
+        alert('Invalid username or password');
+      }
+    });
   }
 }
