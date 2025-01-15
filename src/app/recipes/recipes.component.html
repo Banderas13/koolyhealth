@@ -1,1 +1,39 @@
 <p>recipes works!</p>
+<main class="main">
+    <div>
+      
+        <h1>Insuline Calculation logic</h1>
+        <form>
+          <table>
+            <tr>
+              <td>eaten carbs:</td>
+              <td>0g</td>
+            </tr>
+            <tr>
+              <td>carbs per insuline:</td>
+              <td><input type="number" #insuline></td>
+            </tr>
+            <tr>
+              <td>current glucose:</td>
+              <td><input type="number" #glucose></td>
+            </tr>
+            <tr>
+              <td>target glucose:</td>
+              <td>120</td>
+            </tr>
+            <tr>
+              <td>correction factor:</td>
+              <td><input type="number" #correction></td>
+            </tr>
+          </table>
+          <button
+          class="btn btn-outline-light" 
+          type="button"
+          (click)="calculate(0, insuline.value, glucose.value, correction.value)"
+          >
+          Calculate Insuline
+        </button>
+      </form>
+      <div id="output"></div>
+    </div>
+</main>
