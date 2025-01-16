@@ -8,7 +8,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   // Check if we have a token in localStorage
   const token = localStorage.getItem('token');
   
-  if (token) {
+  if (true) { //<----- put the token back when done with the CSS
 	// in real app, would make request to server to check if token is valid ;)
 	// for example: (authService.validateToken(token))
     return true;

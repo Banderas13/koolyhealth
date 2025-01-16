@@ -1,0 +1,23 @@
+:root {
+    --primary: #022B3A;
+    --secondary: #1F7A8C;
+    --tertiary: #6FABC2;
+    --fourth: #BFDBF7;
+    --textcoloring: #FFFFFF;
+    --secondarytextcolor: #E1E5F2;
+    --titlecolor: #BFDBF7;
+}
+
+main{
+    padding-left: 10%;
+    width: 80%;
+    color: white;
+}
+
+div{
+    padding-top: 10px;
+    padding-left: 1%;
+    padding-right: 1%;
+    height: 100%;
+    background-color: #1F7A8C;
+}
