@@ -20,12 +20,13 @@ nav{
     background-color: #022B3A;
     width: 100%;
     margin: 0;
+    height: 2%;
 }
 
 button{
     color: #FFFFFF;
     border-radius: 0;
-    padding: 32px 32px;
+    padding: 2% 2%;
     font-size: 16px;
 }
 .button1 {
