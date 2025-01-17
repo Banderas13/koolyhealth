@@ -3,14 +3,14 @@
 		<div  class="row">
 			<div  class="col-md-12">
 				<h1>Register</h1>
-				<input  class="form-control"  type="text"  [(ngModel)]="username"  placeholder="E-mail">
-				<input  class="form-control"  type="password"  [(ngModel)]="password"  placeholder="Password">
-				<input  class="form-control"  type="text"  [(ngModel)]="firstName"  placeholder="First Name">
-				<input  class="form-control"  type="text"  [(ngModel)]="lastName"  placeholder="Last Name">
-				<input  class="form-control"  type="date"  [(ngModel)]="bdate">
-				<input  class="form-control"  type="number"  [(ngModel)]="carbeffect"  placeholder="Carbohydrates Per Insuline">
-				<input  class="form-control"  type="number"  [(ngModel)]="insuline"  placeholder="Insuline Sensitivity">
-				<button  (click)="onSubmit()"  type="submit">Register</button>
+				<div><input  class="form-control"  type="text"  [(ngModel)]="username"  placeholder="E-mail"></div>
+				<div><input  class="form-control"  type="password"  [(ngModel)]="password"  placeholder="Password"></div>
+				<div><input  class="form-control"  type="text"  [(ngModel)]="firstName"  placeholder="First Name"></div>
+				<div><input  class="form-control"  type="text"  [(ngModel)]="lastName"  placeholder="Last Name"></div>
+				<div><input  class="form-control"  type="date"  [(ngModel)]="bdate"></div>
+				<div><input  class="form-control"  type="number"  [(ngModel)]="carbeffect"  placeholder="Carbohydrates Per Insuline"></div>
+				<div><input  class="form-control"  type="number"  [(ngModel)]="insuline"  placeholder="Insuline Sensitivity"></div>
+				<div><button  (click)="onSubmit()"  type="submit">Register</button></div>
 			</div>
 		</div>
 	</div>
