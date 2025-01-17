@@ -20,10 +20,14 @@ export class LoginComponent {
     private router: Router
   ) {}
 
+ 
   async onSubmit() {
-    this.UserService.login(this.username, this.password).subscribe(token => {
-      if (token) {
-        localStorage.setItem('token', token);
+    this.UserService.login(this.username, this.password).subscribe(response => {
+      if (response) {
+        const { token, id, firstname } = response; // Destructure the token and user ID from the response
+        localStorage.setItem('token', token); // Store the token in localStorage
+        localStorage.setItem('userId', id.toString()); // Store user ID in localStorage
+        localStorage.setItem('firstname', firstname); // Store user ID in localStorage
         
         // Get the redirect URL from localStorage
         const redirectUrl = localStorage.getItem('redirectUrl') || '/';
