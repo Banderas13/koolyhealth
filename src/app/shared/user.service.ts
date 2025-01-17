@@ -26,13 +26,19 @@ export class UserService {
   }
 
 
-  // Checks user credentials and returns a valid token or null
-  login(username: string, password: string): Observable<string | null> {
-    return this.http.post<{ token: string }>(`${this.apiUrl}/login`, { email: username, password }).pipe(
-        map(response => response.token),
-        catchError(() => of(null))
+  // Checks user credentials and returns a valid token or null and user ID and firstname
+  login(username: string, password: string): Observable<{ token: string; id: number; firstname: string } | null> {
+    return this.http.post<{ token: string; id: number; firstname: string }>(`${this.apiUrl}/login`, { email: username, password }).pipe(
+      map(response => {
+        return {
+          token: response.token,
+          id: response.id,
+          firstname: response.firstname
+        };
+      }),
+      catchError(() => of(null))
     );
-}
+  }
 
   // Registers a new user
   async register( username: string,
@@ -54,5 +60,20 @@ export class UserService {
     };
 
     return this.http.post(`${this.apiUrl}/register`, newUser);
+  }
+
+  updateCarbEffect(userId: number, carbEffect: number): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${userId}`, { carbeffect: carbEffect });
+  }
+
+  updateInsulin(userId: number, insulin: number): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${userId}`, { insuline: insulin });
+  }
+  
+  updatePassword(userId: number, currentPassword: string, newPassword: string): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${userId}`, { 
+      currentPassword, 
+      password: newPassword 
+    });
   }
 }
