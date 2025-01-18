@@ -1,7 +1,7 @@
 import { Injectable } from  '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -26,14 +26,18 @@ export class UserService {
   }
 
 
-  // Checks user credentials and returns a valid token or null
-  async login(username: string, password: string): Promise<string | null> {
-    const users = await this.getUsers().toPromise();
-    const user = users?.find((u) => u.username === username);
-    if (!user || user.password !== password) {
-      return null;
-    }
-    return user.id.toString();
+  // Checks user credentials and returns a valid token or null and user ID and firstname
+  login(username: string, password: string): Observable<{ token: string; id: number; firstname: string } | null> {
+    return this.http.post<{ token: string; id: number; firstname: string }>(`${this.apiUrl}/login`, { email: username, password }).pipe(
+      map(response => {
+        return {
+          token: response.token,
+          id: response.id,
+          firstname: response.firstname
+        };
+      }),
+      catchError(() => of(null))
+    );
   }
 
   // Registers a new user
@@ -55,6 +59,21 @@ export class UserService {
       roleid: 2,
     };
 
-    return this.http.post(this.apiUrl, newUser);
+    return this.http.post(`${this.apiUrl}/register`, newUser);
+  }
+
+  updateCarbEffect(userId: number, carbEffect: number): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${userId}`, { carbeffect: carbEffect });
+  }
+
+  updateInsulin(userId: number, insulin: number): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${userId}`, { insuline: insulin });
+  }
+  
+  updatePassword(userId: number, currentPassword: string, newPassword: string): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${userId}`, { 
+      currentPassword, 
+      password: newPassword 
+    });
   }
 }
