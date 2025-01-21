@@ -1,4 +1,4 @@
-<p>registration works!</p>
+<!-- <p>registration works!</p>
 <div  class="container">
 	<div  class="row">
 		<div  class="col-md-12">
@@ -13,4 +13,19 @@
 			<button  (click)="onSubmit()"  type="submit">Register</button>
 		</div>
 	</div>
-</div>
+</div> -->
+
+
+<div *ngIf="currentStep === 1">
+	<app-personal-data (nextStep)="moveToNextStep($event)"></app-personal-data>
+  </div>
+  
+  <div *ngIf="currentStep === 2">
+	<app-insuline-data
+	  [formData]="formData"
+	  (previousStep)="moveToPreviousStep()"
+	  (submit)="handleSubmission($event)"
+	></app-insuline-data>
+  </div>
+
+
