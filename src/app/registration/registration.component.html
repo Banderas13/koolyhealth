@@ -28,24 +28,3 @@
 	  (submit)="handleSubmission($event)"
 	></app-insuline-data>
   </div>
-
-
-
-<main class="main">
-	<div  class="container">
-		<div  class="row">
-			<div  class="col-md-12">
-				<h1>Register</h1>
-				<div><input  class="form-control"  type="text"  [(ngModel)]="username"  placeholder="E-mail"></div>
-				<div><input  class="form-control"  type="password"  [(ngModel)]="password"  placeholder="Password"></div>
-				<div><input  class="form-control"  type="text"  [(ngModel)]="firstName"  placeholder="First Name"></div>
-				<div><input  class="form-control"  type="text"  [(ngModel)]="lastName"  placeholder="Last Name"></div>
-				<div><input  class="form-control"  type="date"  [(ngModel)]="bdate"></div>
-				<div><input  class="form-control"  type="number"  [(ngModel)]="carbeffect"  placeholder="Carbohydrates Per Insuline"></div>
-				<div><input  class="form-control"  type="number"  [(ngModel)]="insuline"  placeholder="Insuline Sensitivity"></div>
-				<div><button  (click)="onSubmit()"  type="submit">Register</button></div>
-			</div>
-		</div>
-	</div>
-</main>
-
