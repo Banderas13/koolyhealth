@@ -8,6 +8,8 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { SearchComponent } from './search/search.component';
 import { UserComponent } from './user/user.component';
+import { InsulineDataComponent } from './registration/insuline-data/insuline-data.component';
+import { PersonalDataComponent } from './registration/personal-data/personal-data.component';
 import { authGuard } from  './auth.guard';
 
 export const routes: Routes = [
@@ -21,4 +23,6 @@ export const routes: Routes = [
     { path: 'registration', component: RegistrationComponent },
     { path: 'search', canActivate: [authGuard], component: SearchComponent },
     { path: 'user', canActivate: [authGuard], component: UserComponent },
+    { path: 'insulin-data', component: InsulineDataComponent },
+    { path: 'personal-data', component: PersonalDataComponent }
 ];
