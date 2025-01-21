@@ -1,20 +1,17 @@
-<p>ingredients works!</p>
-
-<div>
-  <ul>
-    <li *ngFor="let ingredient of selectedIngredients">
-      {{ ingredient.name }} - Carbs: {{ getCarbohydrates(ingredient) }}<button class="btn btn-outline-light" 
-      type="button"
-      (click)="removeIngredient(ingredient.id)">-</button>
-    </li>
-    <li><button routerLink="/search">+</button></li>
-  </ul>
-  <p>Total Carbs: {{ totalCarbs }}g</p>
-</div>
 <main class="main">
   <div>
-    
-      <h1>Insuline Calculation logic</h1>
+    <h1>Food</h1>
+    <ul>
+      <li *ngFor="let ingredient of selectedIngredients">
+        {{ ingredient.name }} - Carbs: {{ getCarbohydrates(ingredient) }}<button class="btn btn-outline-light" 
+        type="button"
+        (click)="removeIngredient(ingredient.id)">-</button>
+      </li>
+      <li><button routerLink="/search">+</button></li>
+    </ul>
+    <p>Total Carbs: {{ totalCarbs }}g</p>    
+
+    <h1>Insuline Calculation logic</h1>
       <form>
         <table>
           <tr>
