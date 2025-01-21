@@ -1,3 +1,36 @@
+
+<!-- <p>registration works!</p>
+<div  class="container">
+	<div  class="row">
+		<div  class="col-md-12">
+			<h1>Register</h1>
+			<input  class="form-control"  type="text"  [(ngModel)]="username"  placeholder="E-mail">
+			<input  class="form-control"  type="password"  [(ngModel)]="password"  placeholder="Password">
+            <input  class="form-control"  type="text"  [(ngModel)]="firstName"  placeholder="First Name">
+            <input  class="form-control"  type="text"  [(ngModel)]="lastName"  placeholder="Last Name">
+            <input  class="form-control"  type="date"  [(ngModel)]="bdate">
+            <input  class="form-control"  type="number"  [(ngModel)]="carbeffect"  placeholder="Carbohydrates Per Insuline">
+            <input  class="form-control"  type="number"  [(ngModel)]="insuline"  placeholder="Insuline Sensitivity">
+			<button  (click)="onSubmit()"  type="submit">Register</button>
+		</div>
+	</div>
+</div> -->
+
+
+<div *ngIf="currentStep === 1">
+	<app-personal-data (nextStep)="moveToNextStep($event)"></app-personal-data>
+  </div>
+  
+  <div *ngIf="currentStep === 2">
+	<app-insuline-data
+	  [formData]="formData"
+	  (previousStep)="moveToPreviousStep()"
+	  (submit)="handleSubmission($event)"
+	></app-insuline-data>
+  </div>
+
+
+
 <main class="main">
 	<div  class="container">
 		<div  class="row">
@@ -15,3 +48,4 @@
 		</div>
 	</div>
 </main>
+

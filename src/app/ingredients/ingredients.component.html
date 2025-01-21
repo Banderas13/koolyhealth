@@ -1,3 +1,18 @@
+
+<!-- <p>ingredients works!</p>
+
+<div>
+  <ul>
+    <li *ngFor="let ingredient of selectedIngredients">
+      {{ ingredient.name }} - Carbs: {{ getCarbohydrates(ingredient) }}<button class="btn btn-outline-light" 
+      type="button"
+      (click)="removeIngredient(ingredient.id)">-</button>
+    </li>
+    <li><button routerLink="/search">+</button></li>
+  </ul>
+  <p>Total Carbs: {{ totalCarbs }}g</p>
+</div>
+
 <main class="main">
   <div>
     <h1>Food</h1>
@@ -45,6 +60,75 @@
     </form>
     <div id="output"></div>
   </div>
+</main> -->
+<div class="my-24">
+  <h2 class="text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white ">Calculate how much <span class="text-cyan-600 dark:text-cyan-500">Insulin</span> you need</h2>
+</div>
+
+
+<div class="p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5 w-2/4 mx-auto ">
+  <ul class="space-y-2">
+    <li *ngFor="let ingredient of selectedIngredients" class="flex items-center justify-between">
+      <span>
+        {{ ingredient.name }} - Carbs: {{ getCarbohydrates(ingredient) }}
+      </span>
+      <button
+        class="btn btn-outline-light text-white bg-orange-500 hover:bg-orange-700 px-3 py-1 rounded"
+        type="button"
+        (click)="removeIngredient(ingredient.id)"
+      >
+        -
+      </button>
+    </li>
+    <li class="text-center">
+      <button
+        routerLink="/search"
+        class="btn btn-outline-light text-white bg-emerald-500 hover:bg-emerald-700 px-3 py-1 rounded"
+      >
+        +
+      </button>
+    </li>
+  </ul>
+  <p class="mt-4 font-semibold text-lg text-center">Total Carbs: {{ totalCarbs }}g</p>
+</div>
+
+<main class="main mt-8 flex justify-center">
+  <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5 w-2/4">
+    <h1 class="text-xl font-bold mb-4 text-center">Insulin Calculation Logic</h1>
+    <form>
+      <table class="table-auto w-full mb-4 text-sm">
+        <tr>
+          <td class="pr-4">Eaten carbs:</td>
+          <td>{{ totalCarbs }}g</td>
+        </tr>
+        <tr>
+          <td class="pr-4">Carbs per insulin:</td>
+          <td><input class="border rounded px-2 py-1 w-full" type="number" #insuline /></td>
+        </tr>
+        <tr>
+          <td class="pr-4">Current glucose:</td>
+          <td><input class="border rounded px-2 py-1 w-full" type="number" #glucose /></td>
+        </tr>
+        <tr>
+          <td class="pr-4">Target glucose:</td>
+          <td>120</td>
+        </tr>
+        <tr>
+          <td class="pr-4">Correction factor:</td>
+          <td><input class="border rounded px-2 py-1 w-full" type="number" #correction /></td>
+        </tr>
+      </table>
+      <button
+        class="btn btn-outline-light text-white bg-cyan-500 hover:bg-cyan-700 px-4 py-2 rounded w-full"
+        type="button"
+        (click)="calculate(totalCarbs, insuline.value, glucose.value, correction.value)"
+      >
+        Calculate Insulin
+      </button>
+    </form>
+    <div id="output" class="mt-4 text-center text-lg font-semibold"></div>
+  </div>
 </main>
+
 
 <router-outlet></router-outlet>

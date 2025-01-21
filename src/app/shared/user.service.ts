@@ -41,7 +41,8 @@ export class UserService {
   }
 
   // Registers a new user
-  async register( username: string,
+  async register( 
+    username: string,
     password: string,
     firstName: string,
     lastName: string,
