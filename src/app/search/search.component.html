@@ -1,3 +1,4 @@
+
 <div class="max-w-md mx-auto mt-5">   
   <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
   <div class="relative">
@@ -23,4 +24,21 @@
 
 
 
+
+
+<main class="main">
+  <div>
+    <input [(ngModel)]="searchQuery" placeholder="Search for ingredients" />
+    <button (click)="searchIngredients()">Search</button>
+  </div>
+  
+  <div *ngIf="ingredients.length > 0">
+    <ul>
+      <li *ngFor="let ingredient of ingredients">
+        {{ ingredient.name }}
+        <button (click)="addIngredient(ingredient)">Add</button>
+      </li>
+    </ul>
+  </div>
+</main>
 

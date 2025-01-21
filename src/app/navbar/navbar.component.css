@@ -18,15 +18,15 @@ body{
 
 nav{
     background-color: #022B3A;
-    padding: 1%;
     width: 100%;
     margin: 0;
+    height: 2%;
 }
 
 button{
     color: #FFFFFF;
     border-radius: 0;
-    padding: 16px 32px;
+    padding: 2% 2%;
     font-size: 16px;
 }
 .button1 {
@@ -38,4 +38,8 @@ button{
 .button1:hover {
     background-color: #022B3A;
     color: white;
+}
+
+.button2 {
+    float: right;
 }

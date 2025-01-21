@@ -1,3 +1,4 @@
+
 <!-- <p>login works!</p>
 
 <div  class="container">
@@ -52,3 +53,18 @@
 		</div>
 	</div>
   </section>
+
+<main class="main">
+	<div  class="container">
+		<div  class="row">
+			<div  class="col-md-12">
+				<h1>Login</h1>
+				<div><input  class="form-control"  type="text"  [(ngModel)]="username"  placeholder="Username"></div>
+				<div><input  class="form-control"  type="password"  [(ngModel)]="password"  placeholder="Password"></div>
+				<div><button  (click)="onSubmit()"  type="submit">Login</button></div>
+				<div><button routerLink="/registration">Register</button></div>
+			</div>
+		</div>
+	</div>
+</main>
+
