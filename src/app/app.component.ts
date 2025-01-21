@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from './navbar/navbar.component';
+import { OnInit } from '@angular/core';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +10,10 @@ import { NavbarComponent } from './navbar/navbar.component';
   styleUrl: './app.component.css',
   standalone: true
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'CarbWatch';
+
+  ngOnInit(): void {
+    initFlowbite();
+  }
 }
