@@ -16,11 +16,17 @@ export class MealsComponent {
 
   GetRecipes(){
     this.recipeService.FetchData();
+  }
+
+  ngOnInit() {
+    this.GetRecipes();
+    this.recepies =  this.recipeService.recepies
+    console.log(this.recepies);
+  }
+
+  CheckRecipe(id: any){
+    this.recipeService.FetchRecepie(id);
+  }
 
 }
 
-ngOnInit() {
-  this.GetRecipes();
-  this.recepies =  this.recipeService.recepies
-}
-}

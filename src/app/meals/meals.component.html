@@ -6,7 +6,7 @@
         <div>
             <h1>{{recepie.name}}</h1>
             <div>did recept heeft een totaal van {{recepie.carbs}} koolhydraten</div> 
-            <button>Check recept</button>
+            <button (click)="CheckRecipe(recepie.id)">Check recept</button>
             <hr>
         </div>
     }
