@@ -17,6 +17,7 @@ export class RecipeService {
     .then(res => res.json())
     .then(data => {
       this.recepies.set(data);
+      console.log(this.recepies);
     })
     .catch(e => console.log(e));
   }
@@ -27,7 +28,12 @@ export class RecipeService {
     .then(data => {
       let recept = data.find((recepie: any) => recepie.id === id);
       this.recepie.set(recept);
+      console.log(this.recepie);
     })
     .catch(e => console.log(e));
+  }
+
+  GetRecipeIntoRecipePage(){
+    return this.recepie;
   }
 }

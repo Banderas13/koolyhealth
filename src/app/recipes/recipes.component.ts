@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { InsulinCalculatorService } from '../shared/insulin-calculator.service';
+import { RecipeService } from '../shared/recipe.service';
 
 @Component({
   selector: 'app-recipes',
@@ -8,9 +9,20 @@ import { InsulinCalculatorService } from '../shared/insulin-calculator.service';
   styleUrl: './recipes.component.css'
 })
 export class RecipesComponent {
-  constructor(private insulinCalculatorService: InsulinCalculatorService) {}
+  constructor(private insulinCalculatorService: InsulinCalculatorService, private recipeService: RecipeService) {}
 
-  calculate(carbs: number, insuline: string, glucose: string, correction: string){
-    document.getElementById("output")!.innerHTML = this.insulinCalculatorService.Calculate(carbs, insuline, glucose, correction);  
+  recepie:any;
+
+  calculate(carbs: string, insuline: string, glucose: string, correction: string){
+    console.log(carbs);
+    console.log(insuline);
+    console.log(glucose);
+    console.log(correction);
+    document.getElementById("output")!.innerHTML = this.insulinCalculatorService.Calculate(parseInt(carbs), insuline, glucose, correction); 
+  }
+
+  ngOnInit(){
+    this.recepie = this.recipeService.GetRecipeIntoRecipePage();
+    console.log(this.recepie);
   }
 }

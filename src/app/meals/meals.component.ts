@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { RecipeService } from '../shared/recipe.service';
 import { JsonPipe } from '@angular/common';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-meals',
@@ -10,7 +11,7 @@ import { JsonPipe } from '@angular/common';
 })
 export class MealsComponent {
 
-  constructor(private recipeService: RecipeService){}
+  constructor(private recipeService: RecipeService, private router: Router){}
 
   recepies:any;
 
@@ -21,11 +22,11 @@ export class MealsComponent {
   ngOnInit() {
     this.GetRecipes();
     this.recepies =  this.recipeService.recepies
-    console.log(this.recepies);
   }
 
   CheckRecipe(id: any){
     this.recipeService.FetchRecepie(id);
+    this.router.navigate(['/recipes']);
   }
 
 }
