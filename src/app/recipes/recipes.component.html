@@ -1,17 +1,17 @@
 <main class="main">
     <div>
         <div>
-          <h1>{{recepie.name}}</h1>
-          <div>did recept heeft een totaal van {{recepie.carbs}} koolhydraten</div> 
+          <h1>{{recepie().name}}</h1>
+          <div>did recept heeft een totaal van {{recepie().carbs}} koolhydraten</div> 
           <hr>
-          <div>{{recepie.bereiding}}</div>
+          <div>{{recepie().bereiding}}</div>
         </div>
         <h1>Insuline Calculation logic</h1>
         <form>
           <table>
             <tr>
               <td>eaten carbs:</td>
-              <td>{{recepie.carbs}}g</td>
+              <td>{{recepie().carbs}}g</td>
             </tr>
             <tr>
              <td>carbs per insuline:</td>
@@ -33,7 +33,7 @@
           <button
           class="btn btn-outline-light" 
           type="button"
-          (click)="calculate(recepie.carbs, insuline.value, glucose.value, correction.value)"
+          (click)="calculate(recepie().carbs, insuline.value, glucose.value, correction.value)"
           >
           Calculate Insuline
           </button>
