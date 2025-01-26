@@ -1,16 +1,38 @@
 import { Component } from '@angular/core';
 import { InsulinCalculatorService } from '../shared/insulin-calculator.service';
+import { RecipeService } from '../shared/recipe.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-recipes',
-  imports: [],
+  imports: [ CommonModule ],
   templateUrl: './recipes.component.html',
   styleUrl: './recipes.component.css'
 })
 export class RecipesComponent {
-  constructor(private insulinCalculatorService: InsulinCalculatorService) {}
+  constructor(private insulinCalculatorService: InsulinCalculatorService, private recipeService: RecipeService) {}
 
-  calculate(carbs: number, insuline: string, glucose: string, correction: string){
-    document.getElementById("output")!.innerHTML = this.insulinCalculatorService.Calculate(carbs, insuline, glucose, correction);  
+  recepie:any;
+
+  calculate(carbs: string, insuline: string, glucose: string, correction: string){
+    console.log(carbs);
+    console.log(insuline);
+    console.log(glucose);
+    console.log(correction);
+    document.getElementById("output")!.innerHTML = this.insulinCalculatorService.Calculate(parseInt(carbs), insuline, glucose, correction); 
+  }
+
+  ngOnInit(){
+    this.recepie = this.recipeService.GetRecipeIntoRecipePage();
+    console.log(this.recepie);
+  }
+
+  //splits de stappen van de bereiding op achter elke punt
+  getSteps(): string[] {
+    const bereiding = this.recepie()?.bereiding || '';
+    return bereiding
+      .split('.')
+      .map((step: string) => step.trim())
+      .filter((step: string) => step.length > 0);
   }
 }

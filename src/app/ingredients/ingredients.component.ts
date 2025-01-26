@@ -5,13 +5,15 @@ import { InsulinCalculatorService } from '../shared/insulin-calculator.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, RouterLink } from '@angular/router';
+import { SearchComponent } from "../search/search.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ingredients',
   templateUrl: './ingredients.component.html',
   styleUrl: './ingredients.component.css',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterOutlet, RouterLink],
+  imports: [FormsModule, CommonModule, RouterOutlet, RouterLink, SearchComponent],
 })
 export class IngredientsComponent implements OnInit {
   selectedIngredients: any[] = [];
@@ -33,7 +35,13 @@ export class IngredientsComponent implements OnInit {
     const carbs = ingredient.nutrition?.nutrients?.find(
       (nutrient: any) => nutrient.name === 'Carbohydrates'
     );
-      return carbs ? `${this.ingredientService.GetCarbs(ingredient, ingredient.id)}${carbs.unit}/${this.ingredientService.GetAmount(ingredient, ingredient.id)}${carbs.unit}` : 'N/A';
+    if (carbs) {
+      const carbValue = parseFloat(this.ingredientService.GetCarbs(ingredient, ingredient.id).toFixed(2)); // Round carbs to 2 decimal places
+      const amountValue = this.ingredientService.GetAmount(ingredient, ingredient.id);
+      return `${carbValue}${carbs.unit} Amount:${amountValue}${carbs.unit}`;
+    }
+  
+    return 'N/A';
   }
 
   removeIngredient(id : number){
@@ -43,7 +51,9 @@ export class IngredientsComponent implements OnInit {
   }
 
   calculateTotalCarbs() {
-    this.totalCarbs = this.ingredientService.calculateTotalCarbs();
-    console.log(this.totalCarbs)
+    const total = this.ingredientService.calculateTotalCarbs();
+    this.totalCarbs = parseFloat(total.toFixed(2));
+    console.log(this.totalCarbs);
   }
+  
 }
