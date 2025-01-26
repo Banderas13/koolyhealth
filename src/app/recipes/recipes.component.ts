@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { InsulinCalculatorService } from '../shared/insulin-calculator.service';
 import { RecipeService } from '../shared/recipe.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-recipes',
-  imports: [],
+  imports: [ CommonModule ],
   templateUrl: './recipes.component.html',
   styleUrl: './recipes.component.css'
 })
@@ -24,5 +25,14 @@ export class RecipesComponent {
   ngOnInit(){
     this.recepie = this.recipeService.GetRecipeIntoRecipePage();
     console.log(this.recepie);
+  }
+
+  //splits de stappen van de bereiding op achter elke punt
+  getSteps(): string[] {
+    const bereiding = this.recepie()?.bereiding || '';
+    return bereiding
+      .split('.')
+      .map((step: string) => step.trim())
+      .filter((step: string) => step.length > 0);
   }
 }
