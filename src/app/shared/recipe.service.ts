@@ -8,12 +8,15 @@ export class RecipeService {
 
   constructor(private http: HttpClient) { }
 
-  private apiUrl = 'http://127.0.0.1:8000/api/courses';
+  private mealsUrl = 'http://127.0.0.1:8000/api/courses';
+  private ingredientsUrl = 'http://127.0.0.1:8000/api/joinedingredients';
   recepies = signal([]);
   recepie = signal([]);
+  ingredients = signal([]);
+  ingredientName = '';
 
   FetchData(){
-    fetch(this.apiUrl)
+    fetch(this.mealsUrl)
     .then(res => res.json())
     .then(data => {
       this.recepies.set(data);
@@ -23,12 +26,20 @@ export class RecipeService {
   }
 
   FetchRecepie(id: any){
-    fetch(this.apiUrl)
+    fetch(this.mealsUrl)
     .then(res => res.json())
     .then(data => {
       let recept = data.find((recepie: any) => recepie.id === id);
       this.recepie.set(recept);
       console.log(this.recepie);
+    })
+    .catch(e => console.log(e));
+
+    fetch(this.ingredientsUrl)
+    .then(res2 => res2.json())
+    .then(data => {
+      let ingredients = data.filter((ingredient: any) => ingredient.courseid === id);
+      this.ingredients.set(ingredients);
     })
     .catch(e => console.log(e));
   }

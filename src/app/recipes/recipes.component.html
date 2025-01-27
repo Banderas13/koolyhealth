@@ -5,48 +5,37 @@
     <span class="text-cyan-600 dark:text-cyan-500">Preparation</span> of {{recepie().name}}</h2>
 </div>
 <main class="main">
-  <div>
-    <div class="w-4/6 mx-auto">
-      <div class="my-6 flex flex-col items-center ">
-        <h2 class="mb-4 text-2xl font-semibold text-gray-900 dark:text-white ">Descprition</h2>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat sunt beatae doloribus vel quam officiis
-          odit, earum asperiores, molestias itaque eligendi vero ratione nam autem atque perspiciatis. Dolor, eius
-          excepturi.</p>
-      </div>
-      <hr>
-      <div class="my-6 flex flex-col items-center ">
-        <h2 class="mb-4 text-2xl font-semibold text-gray-900 dark:text-white ">Ingredients</h2>
-        <ul
-          class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400 grid sm:grid-cols-2 gap-x-16">
-          <li>
-            ingedrient <span class="font-semibold text-gray-900 dark:text-white">aantal</span>
-          </li>
-          <li>
-            ingedrient <span class="font-semibold text-gray-900 dark:text-white">aantal</span>
-          </li>
-          <li>
-            ingedrient <span class="font-semibold text-gray-900 dark:text-white">aantal</span>
-          </li>
-          <li>
-            ingedrient <span class="font-semibold text-gray-900 dark:text-white">aantal</span>
-          </li>
-          <li>
-            ingedrient <span class="font-semibold text-gray-900 dark:text-white">aantal</span>
-          </li>
-          <li>
-            ingedrient <span class="font-semibold text-gray-900 dark:text-white">aantal</span>
-          </li>
-          <li>
-            ingedrient <span class="font-semibold text-gray-900 dark:text-white">aantal</span>
-          </li>
-          <li>
-            ingedrient <span class="font-semibold text-gray-900 dark:text-white">aantal</span>
-          </li>
-          <li>
-            ingedrient <span class="font-semibold text-gray-900 dark:text-white">aantal</span>
-          </li>
-        </ul>
-      </div>
+
+    <div>
+        <div class="w-4/6 mx-auto">
+          <!-- <h1>{{recepie().name}}</h1> -->
+          <!-- <div>did recept heeft een totaal van {{recepie().carbs}} koolhydraten</div> 
+          <hr> -->
+          <!-- <div>{{recepie().bereiding}}</div> -->
+          <div class="my-6 flex flex-col items-center ">
+            <h2 class="mb-4 text-2xl font-semibold text-gray-900 dark:text-white ">Descprition</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat sunt beatae doloribus vel quam officiis odit, earum asperiores, molestias itaque eligendi vero ratione nam autem atque perspiciatis. Dolor, eius excepturi.</p>
+          </div>
+          <hr>
+          <div class="my-6 flex flex-col items-center ">
+            <h2 class="mb-4 text-2xl font-semibold text-gray-900 dark:text-white ">Ingredients</h2>
+              <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400 grid sm:grid-cols-2 gap-x-16">
+
+
+                @for (ingredient of ingredients(); track ingredient.id){
+                  <li>{{ingredient.name}}: {{ingredient.amount}}</li>
+                }
+
+
+              </ul>
+            </div>
+          <hr>
+          <div class="my-6 flex flex-col items-center">
+            <h2 class="mb-4 text-2xl font-semibold text-gray-900 dark:text-white">Preparation</h2>
+            <ol class="max-w-md space-y-1 list-decimal list-inside dark:text-gray-400">
+              <li *ngFor="let step of getSteps()">{{ step }}</li>
+            </ol>
+          </div>
       <hr>
       <div class="my-6 flex flex-col items-center">
         <h2 class="mb-4 text-2xl font-semibold text-gray-900 dark:text-white">Preparation</h2>
