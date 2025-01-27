@@ -13,6 +13,7 @@ export class RecipesComponent {
   constructor(private insulinCalculatorService: InsulinCalculatorService, private recipeService: RecipeService) {}
 
   recepie:any;
+  ingredients:any;
 
   calculate(carbs: string, insuline: string, glucose: string, correction: string){
     console.log(carbs);
@@ -25,6 +26,7 @@ export class RecipesComponent {
   ngOnInit(){
     this.recepie = this.recipeService.GetRecipeIntoRecipePage();
     console.log(this.recepie);
+    this.ingredients =this.recipeService.ingredients;
   }
 
   //splits de stappen van de bereiding op achter elke punt

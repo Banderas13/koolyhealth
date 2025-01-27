@@ -17,33 +17,9 @@
           <div class="my-6 flex flex-col items-center ">
             <h2 class="mb-4 text-2xl font-semibold text-gray-900 dark:text-white ">Ingredients</h2>
               <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400 grid sm:grid-cols-2 gap-x-16">
-                <li>
-                    ingedrient <span class="font-semibold text-gray-900 dark:text-white">aantal</span>
-                </li>
-                <li>
-                  ingedrient <span class="font-semibold text-gray-900 dark:text-white">aantal</span>
-                </li>
-                <li>
-                  ingedrient <span class="font-semibold text-gray-900 dark:text-white">aantal</span>
-                </li>
-                <li>
-                  ingedrient <span class="font-semibold text-gray-900 dark:text-white">aantal</span>
-              </li>
-              <li>
-                ingedrient <span class="font-semibold text-gray-900 dark:text-white">aantal</span>
-              </li>
-              <li>
-                ingedrient <span class="font-semibold text-gray-900 dark:text-white">aantal</span>
-              </li>
-              <li>
-                ingedrient <span class="font-semibold text-gray-900 dark:text-white">aantal</span>
-            </li>
-            <li>
-              ingedrient <span class="font-semibold text-gray-900 dark:text-white">aantal</span>
-            </li>
-            <li>
-              ingedrient <span class="font-semibold text-gray-900 dark:text-white">aantal</span>
-            </li>
+                @for (ingredient of ingredients(); track recepie.id){
+                  <li>{{ingredient.ingredientid}}: {{ingredient.amount}}</li>
+                }
               </ul>
             </div>
           <hr>
