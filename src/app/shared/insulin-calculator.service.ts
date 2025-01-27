@@ -1,16 +1,29 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class InsulinCalculatorService {
+  insuline = JSON.parse(localStorage.getItem('carbEffect')!);
+  correction = JSON.parse(localStorage.getItem('insulinCorrection')!);
 
-  constructor() { }
+  constructor() {}
+
+  ngOnInit(): void {
+    this.insuline = JSON.parse(localStorage.getItem('carbEffect')!);
+    this.correction = JSON.parse(localStorage.getItem('insulinCorrection')!);
+    console.log(this.insuline);
+    console.log(this.correction);
+  }
 
   //calculate carbs
-  Calculate(carbs: number, insuline: string, glucose: string, correction: string){
-    let eatenCarbsToInsuline = (carbs/(parseInt(insuline)|| 0));
-    let targetGlucoseCalculation = correction? ((( glucose? parseInt(glucose) : 0) - 120)/parseInt(correction)) : 0;
-    return (eatenCarbsToInsuline + targetGlucoseCalculation).toString();  
+  Calculate(carbs: number, glucose: number) {
+    let eatenCarbsToInsuline = carbs / this.insuline || 0;
+    let targetGlucoseCalculation = this.correction
+      ? ((glucose ? glucose : 0) - 120) / this.correction
+      : 0;
+    return (eatenCarbsToInsuline + targetGlucoseCalculation)
+      .toFixed(1)
+      .toString();
   }
 }

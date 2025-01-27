@@ -13,22 +13,43 @@ import { Router } from '@angular/router';
   templateUrl: './ingredients.component.html',
   styleUrl: './ingredients.component.css',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterOutlet, RouterLink, SearchComponent],
+  imports: [
+    FormsModule,
+    CommonModule,
+    RouterOutlet,
+    RouterLink,
+    SearchComponent,
+  ],
 })
 export class IngredientsComponent implements OnInit {
   selectedIngredients: any[] = [];
   totalCarbs: number = 0;
+  // insuline = JSON.parse(localStorage.getItem('carbEffect')!);
+  // correction = JSON.parse(localStorage.getItem('insulinCorrection')!);
 
-  constructor(private ingredientService: IngredientService, private insulinCalculatorService: InsulinCalculatorService) {}
+  constructor(
+    private ingredientService: IngredientService,
+    private insulinCalculatorService: InsulinCalculatorService
+  ) {}
 
   ngOnInit() {
     this.selectedIngredients = this.ingredientService.getSelectedIngredients();
-    console.log(this.selectedIngredients);
     this.calculateTotalCarbs();
+    // console.log(this.selectedIngredients);
+
+    // console.log(this.selectedIngredients);
+    // check if there has been a reload. if not it makes a reload (fix for add button and total carbs)
+    if (!localStorage.getItem('reload')) {
+      localStorage.setItem('reload', 'no reload');
+      location.reload();
+    } else {
+      localStorage.removeItem('reload');
+    }
   }
 
-  calculate(carbs: number, insuline: string, glucose: string, correction: string){
-    document.getElementById("output")!.innerHTML = this.insulinCalculatorService.Calculate(carbs, insuline, glucose, correction);  
+  calculate(carbs: number, glucose: number) {
+    document.getElementById('output')!.innerHTML =
+      this.insulinCalculatorService.Calculate(carbs, glucose);
   }
 
   getCarbohydrates(ingredient: any): string {
@@ -36,15 +57,20 @@ export class IngredientsComponent implements OnInit {
       (nutrient: any) => nutrient.name === 'Carbohydrates'
     );
     if (carbs) {
-      const carbValue = parseFloat(this.ingredientService.GetCarbs(ingredient, ingredient.id).toFixed(2)); // Round carbs to 2 decimal places
-      const amountValue = this.ingredientService.GetAmount(ingredient, ingredient.id);
+      const carbValue = parseFloat(
+        this.ingredientService.GetCarbs(ingredient, ingredient.id).toFixed(2)
+      ); // Round carbs to 2 decimal places
+      const amountValue = this.ingredientService.GetAmount(
+        ingredient,
+        ingredient.id
+      );
       return `${carbValue}${carbs.unit} Amount:${amountValue}${carbs.unit}`;
     }
-  
+
     return 'N/A';
   }
 
-  removeIngredient(id : number){
+  removeIngredient(id: number) {
     this.ingredientService.removeIngredient(id);
     this.calculateTotalCarbs();
     location.reload();
@@ -55,5 +81,8 @@ export class IngredientsComponent implements OnInit {
     this.totalCarbs = parseFloat(total.toFixed(2));
     console.log(this.totalCarbs);
   }
-  
+
+  reloadPage() {
+    location.reload();
+  }
 }
