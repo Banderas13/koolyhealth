@@ -1,75 +1,26 @@
-
-<!-- <p>ingredients works!</p>
-
-<div>
-  <ul>
-    <li *ngFor="let ingredient of selectedIngredients">
-      {{ ingredient.name }} - Carbs: {{ getCarbohydrates(ingredient) }}<button class="btn btn-outline-light" 
-      type="button"
-      (click)="removeIngredient(ingredient.id)">-</button>
-    </li>
-    <li><button routerLink="/search">+</button></li>
-  </ul>
-  <p>Total Carbs: {{ totalCarbs }}g</p>
-</div>
-
-<main class="main">
-  <div>
-    <h1>Food</h1>
-    <ul>
-      <li *ngFor="let ingredient of selectedIngredients">
-        {{ ingredient.name }} - Carbs: {{ getCarbohydrates(ingredient) }}<button class="btn btn-outline-light" 
-        type="button"
-        (click)="removeIngredient(ingredient.id)">-</button>
-      </li>
-      <li><button routerLink="/search">+</button></li>
-    </ul>
-    <p>Total Carbs: {{ totalCarbs }}g</p>    
-
-    <h1>Insuline Calculation logic</h1>
-      <form>
-        <table>
-          <tr>
-            <td>eaten carbs:</td>
-            <td>{{ totalCarbs }}g</td>
-          </tr>
-          <tr>
-            <td>carbs per insuline:</td>
-            <td><input type="number" #insuline></td>
-          </tr>
-          <tr>
-            <td>current glucose:</td>
-            <td><input type="number" #glucose></td>
-          </tr>
-          <tr>
-            <td>target glucose:</td>
-            <td>120</td>
-          </tr>
-          <tr>
-            <td>correction factor:</td>
-            <td><input type="number" #correction></td>
-          </tr>
-        </table>
-        <button
-        class="btn btn-outline-light" 
-        type="button"
-        (click)="calculate((totalCarbs), insuline.value, glucose.value, correction.value)"
-        >
-        Calculate Insuline
-      </button>
-    </form>
-    <div id="output"></div>
-  </div>
-</main> -->
 <div class="my-24">
-  <h2 class="text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white ">Calculate how much <span class="text-cyan-600 dark:text-cyan-500">Insulin</span> you need</h2>
+  <h2
+    class="text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"
+  >
+    Calculate how much
+    <span class="text-cyan-600 dark:text-cyan-500">Insulin</span> you need
+  </h2>
 </div>
 
 <h3 class="text-3xl font-bold mb-4 text-center">List of ingredients</h3>
-<p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 text-center">press the green + button to add an ingredient</p>
-<div class="p-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-10 w-2/4 mx-auto ">
+<p
+  class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 text-center"
+>
+  press the green + button to add an ingredient
+</p>
+<div
+  class="p-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-10 w-2/4 mx-auto"
+>
   <ul class="space-y-2">
-    <li *ngFor="let ingredient of selectedIngredients" class="flex items-center justify-between">
+    <li
+      *ngFor="let ingredient of selectedIngredients"
+      class="flex items-center justify-between"
+    >
       <span>
         {{ ingredient.name }} - Carbs: {{ getCarbohydrates(ingredient) }}
       </span>
@@ -82,45 +33,51 @@
       </button>
     </li>
     <li class="text-center">
-      <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button" class="btn btn-outline-light text-white bg-lime-600 hover:bg-lime-800 px-3 py-1 rounded">
+      <button
+        data-modal-target="popup-modal"
+        data-modal-toggle="popup-modal"
+        type="button"
+        class="btn btn-outline-light text-white bg-lime-600 hover:bg-lime-800 px-3 py-1 rounded"
+      >
         +
-        </button>
+      </button>
     </li>
   </ul>
-  <p class="mt-4 font-semibold text-lg text-center">Total Carbs: {{ totalCarbs }}g</p>
+  <p class="mt-4 font-semibold text-lg text-center">
+    Total Carbs: {{ totalCarbs }}g
+  </p>
 </div>
 
-<main class="main mt-8 flex justify-center">
-  <div class="relative p-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-10 w-2/4">
-    <h3 class="text-3xl font-bold mb-4 text-center">Calculate your insuline dosage</h3>
-    <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 text-center">input your current glucose level to calculate your insulin dosage</p>
+<main class="main my-8 flex justify-center">
+  <div
+    class="relative p-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-10 w-2/4"
+  >
+    <h3 class="text-3xl font-bold mb-4 text-center">
+      Calculate your insuline dosage
+    </h3>
+    <p
+      class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 text-center"
+    >
+      input your current glucose level to calculate your insulin dosage
+    </p>
     <form>
       <table class="table-auto w-full mb-4 text-sm">
-        <tr>
-          <td class="pr-4">Eaten carbs:</td>
-          <td>{{ totalCarbs }}g</td>
-        </tr>
-        <tr>
-          <td class="pr-4">Carbs per insulin:</td>
-          <td><input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" type="number" #insuline /></td>
-        </tr>
-        <tr>
-          <td class="pr-4">Current glucose:</td>
-          <td><input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" type="number" #glucose /></td>
-        </tr>
-        <tr>
-          <td class="pr-4">Target glucose:</td>
-          <td>120</td>
-        </tr>
-        <tr>
-          <td class="pr-4">Correction factor:</td>
-          <td><input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" type="number" #correction /></td>
-        </tr>
+        <label
+          for="glucose"
+          class="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
+          >Current glucose level</label
+        >
+        <input
+          type="number"
+          #glucose
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+          placeholder="mg/dl"
+        />
       </table>
       <button
         class="btn btn-outline-light text-white bg-primary-700 hover:bg-primary-800 px-4 py-2 rounded w-full"
         type="button"
-        (click)="calculate(totalCarbs, insuline.value, glucose.value, correction.value)"
+        (click)="calculate(totalCarbs, +glucose.value)"
       >
         Calculate Insulin
       </button>
@@ -129,26 +86,54 @@
   </div>
 </main>
 
-
-
-  
-  <div id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-      <div class="relative p-4 w-full max-w-md max-h-full">
-          <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
-            <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
-              <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-              </svg>
-              <span class="sr-only">Close modal</span>
-          </button>
-          <div class="p-4 md:p-5 text-center">
-              <svg class="mx-auto mb-2 text-gray-400 w-6 h-6 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-              </svg>
-              <app-search></app-search>
-          </div>
-          </div>
+<div
+  id="popup-modal"
+  tabindex="-1"
+  class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+>
+  <div class="relative p-4 w-full max-w-md max-h-full">
+    <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+      <button
+        (click)="reloadPage()"
+        type="button"
+        class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+        data-modal-hide="popup-modal"
+      >
+        <svg
+          class="w-3 h-3"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 14 14"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+          />
+        </svg>
+        <span class="sr-only">Close modal</span>
+      </button>
+      <div class="p-4 md:p-5 text-center">
+        <svg
+          class="mx-auto mb-2 text-gray-400 w-6 h-6 dark:text-gray-200"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 20 20"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+          />
+        </svg>
+        <app-search></app-search>
       </div>
+    </div>
   </div>
-
-
+</div>
