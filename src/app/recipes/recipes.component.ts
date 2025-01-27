@@ -5,25 +5,28 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-recipes',
-  imports: [ CommonModule ],
+  imports: [CommonModule],
   templateUrl: './recipes.component.html',
-  styleUrl: './recipes.component.css'
+  styleUrl: './recipes.component.css',
 })
 export class RecipesComponent {
-  constructor(private insulinCalculatorService: InsulinCalculatorService, private recipeService: RecipeService) {}
+  constructor(
+    private insulinCalculatorService: InsulinCalculatorService,
+    private recipeService: RecipeService
+  ) {}
+
 
   recepie:any;
   ingredients:any;
 
-  calculate(carbs: string, insuline: string, glucose: string, correction: string){
+  calculate(carbs: number, glucose: number) {
     console.log(carbs);
-    console.log(insuline);
     console.log(glucose);
-    console.log(correction);
-    document.getElementById("output")!.innerHTML = this.insulinCalculatorService.Calculate(parseInt(carbs), insuline, glucose, correction); 
+    document.getElementById('output')!.innerHTML =
+      this.insulinCalculatorService.Calculate(carbs, glucose);
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.recepie = this.recipeService.GetRecipeIntoRecipePage();
     console.log(this.recepie);
     this.ingredients =this.recipeService.ingredients;

@@ -4,7 +4,7 @@ import { empty, filter, Observable } from 'rxjs';
 import { JsonPipe } from '@angular/common';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class IngredientService {
   private apiKey = '09a08ff038e4498caa0bc0ccb4fb09a6';
@@ -17,19 +17,25 @@ export class IngredientService {
     const savedIngredients = localStorage.getItem('selectedIngredients');
     const savedCarbs = localStorage.getItem('carbs');
     const savedAmount = localStorage.getItem('amount');
-    this.selectedIngredients = savedIngredients ? JSON.parse(savedIngredients) : [];
+    this.selectedIngredients = savedIngredients
+      ? JSON.parse(savedIngredients)
+      : [];
     this.carbs = savedCarbs ? JSON.parse(savedCarbs) : [];
     this.amount = savedAmount ? JSON.parse(savedAmount) : [];
   }
 
   // Search for ingredients
   searchIngredients(query: string): Observable<any> {
-    return this.http.get(`https://api.spoonacular.com/food/ingredients/search?query=${query}&apiKey=${this.apiKey}`);
+    return this.http.get(
+      `https://api.spoonacular.com/food/ingredients/search?query=${query}&apiKey=${this.apiKey}`
+    );
   }
 
   // Get ingredient information
   getIngredientInfo(id: number): Observable<any> {
-    return this.http.get(`https://api.spoonacular.com/food/ingredients/${id}/information?amount=1&apiKey=${this.apiKey}`);
+    return this.http.get(
+      `https://api.spoonacular.com/food/ingredients/${id}/information?amount=1&apiKey=${this.apiKey}`
+    );
   }
 
   // Add selected ingredient and save to localStorage
@@ -38,31 +44,38 @@ export class IngredientService {
       (nutrient: any) => nutrient.name === 'Carbohydrates'
     );
     const servingsize = ingredient.nutrition?.weightPerServing?.amount;
-    console.log(servingsize)
+    // console.log(servingsize)
     this.selectedIngredients.push(ingredient);
-    this.carbs.push(carbs.amount/servingsize*amount);
+    this.carbs.push((carbs.amount / servingsize) * amount);
     this.amount.push(amount);
     this.saveToLocalStorage();
   }
 
-  GetCarbs(ingredient: any, id: number){
+  GetCarbs(ingredient: any, id: number) {
     const carbs = ingredient.nutrition?.nutrients?.find(
       (nutrient: any) => nutrient.name === 'Carbohydrates'
     );
     const servingsize = ingredient.nutrition?.weightPerServing?.amount;
-    console.log(carbs.amount + "carbs");
-    console.log(servingsize);
-    console.log(ingredient);
-    console.log(id);
-    console.log(this.amount);
-    console.log(this.amount[this.selectedIngredients.findIndex(ingredient => ingredient.id === id)]);
-    console.log(carbs.amount/servingsize*this.amount[this.selectedIngredients.findIndex(ingredient => ingredient.id === id)]);
-    return(carbs.amount/servingsize*this.amount[this.selectedIngredients.findIndex(ingredient => ingredient.id === id)]);
+    // console.log(carbs.amount + "carbs");
+    // console.log(servingsize);
+    // console.log(ingredient);
+    // console.log(id);
+    // console.log(this.amount);
+    // console.log(this.amount[this.selectedIngredients.findIndex(ingredient => ingredient.id === id)]);
+    // console.log(carbs.amount/servingsize*this.amount[this.selectedIngredients.findIndex(ingredient => ingredient.id === id)]);
+    return (
+      (carbs.amount / servingsize) *
+      this.amount[
+        this.selectedIngredients.findIndex((ingredient) => ingredient.id === id)
+      ]
+    );
   }
 
-  GetAmount(ingredient: any, id: number){
-    console.log("hier geraak ik ook");
-    return this.amount[this.selectedIngredients.findIndex(ingredient => ingredient.id === id)];
+  GetAmount(ingredient: any, id: number) {
+    // console.log("hier geraak ik ook");
+    return this.amount[
+      this.selectedIngredients.findIndex((ingredient) => ingredient.id === id)
+    ];
   }
 
   // Get selected ingredients
@@ -72,17 +85,22 @@ export class IngredientService {
 
   // Remove an ingredient and save to localStorage
   removeIngredient(id: number) {
-    if(this.carbs.length != 1){
-      delete this.carbs[this.selectedIngredients.findIndex(ingredient => ingredient.id === id)];
-      delete this.amount[this.selectedIngredients.findIndex(ingredient => ingredient.id === id)];
-      this.carbs = this.carbs.filter(e => e != null);
-      this.amount = this.amount.filter(e => e != null);
-    }
-    else{
+    if (this.carbs.length != 1) {
+      delete this.carbs[
+        this.selectedIngredients.findIndex((ingredient) => ingredient.id === id)
+      ];
+      delete this.amount[
+        this.selectedIngredients.findIndex((ingredient) => ingredient.id === id)
+      ];
+      this.carbs = this.carbs.filter((e) => e != null);
+      this.amount = this.amount.filter((e) => e != null);
+    } else {
       this.carbs = [];
       this.amount = [];
     }
-    this.selectedIngredients = this.selectedIngredients.filter(ingredient => ingredient.id !== id);
+    this.selectedIngredients = this.selectedIngredients.filter(
+      (ingredient) => ingredient.id !== id
+    );
     this.saveToLocalStorage();
   }
 
@@ -90,7 +108,7 @@ export class IngredientService {
   calculateTotalCarbs(): number {
     console.log(this.carbs);
     let returnvalue = 0;
-    for(let i = 0; i < this.carbs.length; i++){
+    for (let i = 0; i < this.carbs.length; i++) {
       returnvalue += this.carbs[i];
     }
     console.log(returnvalue);
@@ -99,7 +117,10 @@ export class IngredientService {
 
   // Save the current list of ingredients to localStorage
   private saveToLocalStorage() {
-    localStorage.setItem('selectedIngredients', JSON.stringify(this.selectedIngredients));
+    localStorage.setItem(
+      'selectedIngredients',
+      JSON.stringify(this.selectedIngredients)
+    );
     localStorage.setItem('carbs', JSON.stringify(this.carbs));
     localStorage.setItem('amount', JSON.stringify(this.amount));
   }

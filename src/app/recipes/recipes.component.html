@@ -1,8 +1,11 @@
 
 <div class="my-24">
-  <h2 class="text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white"><span class="text-cyan-600 dark:text-cyan-500">Preparation</span> of {{recepie().name}}</h2>
+  <h2
+    class="text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+    <span class="text-cyan-600 dark:text-cyan-500">Preparation</span> of {{recepie().name}}</h2>
 </div>
 <main class="main">
+
     <div>
         <div class="w-4/6 mx-auto">
           <!-- <h1>{{recepie().name}}</h1> -->
@@ -33,80 +36,39 @@
               <li *ngFor="let step of getSteps()">{{ step }}</li>
             </ol>
           </div>
-          <hr>
-        </div>
-        <div class="my-6">
-          <main class="main mt-8 flex justify-center">
-            <div class="relative p-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-10 w-2/4">
-              <h3 class="text-3xl font-bold mb-4 text-center">Calculate your insuline dosage</h3>
-              <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 text-center">input your current glucose level to calculate your insulin dosage</p>
-              <form>
-                <table class="table-auto w-full mb-4 text-sm">
-                  <tr>
-                    <td class="pr-4">Eaten carbs:</td>
-                    <td>{{recepie().carbs}}g</td>
-                  </tr>
-                  <tr>
-                    <td class="pr-4">Carbs per insulin:</td>
-                    <td><input class="border rounded px-2 py-1 w-full" type="number" #insuline /></td>
-                  </tr>
-                  <tr>
-                    <td class="pr-4">Current glucose:</td>
-                    <td><input class="border rounded px-2 py-1 w-full" type="number" #glucose /></td>
-                  </tr>
-                  <tr>
-                    <td class="pr-4">Target glucose:</td>
-                    <td>120</td>
-                  </tr>
-                  <tr>
-                    <td class="pr-4">Correction factor:</td>
-                    <td><input class="border rounded px-2 py-1 w-full" type="number" #correction /></td>
-                  </tr>
-                </table>
-                <button
-                  class="btn btn-outline-light text-white bg-primary-700 hover:bg-primary-800 px-4 py-2 rounded w-full"
-                  type="button"
-                  (click)="calculate(recepie().carbs, insuline.value, glucose.value, correction.value)"
-                >
-                  Calculate Insulin
-                </button>
-              </form>
-              <div id="output" class="mt-4 text-center text-lg font-semibold"></div>
-            </div>
-          </main>
-        </div>
-        <!-- <h1>Insuline Calculation logic</h1>
-        <form>
-          <table>
-            <tr>
-              <td>eaten carbs:</td>
-              <td>{{recepie().carbs}}g</td>
-            </tr>
-            <tr>
-             <td>carbs per insuline:</td>
-             <td><input type="number" #insuline></td>
-            </tr>
-            <tr>
-              <td>current glucose:</td>
-              <td><input type="number" #glucose></td>
-            </tr>
-            <tr>
-              <td>target glucose:</td>
-              <td>120</td>
-            </tr>
-            <tr>
-              <td>correction factor:</td>
-              <td><input type="number" #correction></td>
-            </tr>
-          </table>
-          <button
-          class="btn btn-outline-light" 
-          type="button"
-          (click)="calculate(recepie().carbs, insuline.value, glucose.value, correction.value)"
-          >
-          Calculate Insuline
-          </button>
-        </form>
-        <div id="output"></div> -->
+      <hr>
+      <div class="my-6 flex flex-col items-center">
+        <h2 class="mb-4 text-2xl font-semibold text-gray-900 dark:text-white">Preparation</h2>
+        <ol class="max-w-md space-y-1 list-decimal list-inside dark:text-gray-400">
+          <li *ngFor="let step of getSteps()">{{ step }}</li>
+        </ol>
+      </div>
+      <hr>
     </div>
+    <div class="my-6">
+      <main class="main my-8 flex justify-center">
+        <div class="relative p-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-10 w-2/4">
+          <h3 class="text-3xl font-bold mb-4 text-center">Calculate your insuline dosage</h3>
+          <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400 text-center">
+            input
+            your current glucose level to calculate your insulin dosage</p>
+          <form>
+            <table class="table-auto w-full mb-4 text-sm">
+              <label for="glucose" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Current glucose
+                level</label>
+              <input type="number" #glucose
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                placeholder="mg/dl">
+            </table>
+            <button
+              class="btn btn-outline-light text-white bg-primary-700 hover:bg-primary-800 px-4 py-2 rounded w-full"
+              type="button" (click)="calculate(recepie().carbs, +glucose.value)">
+              Calculate Insulin
+            </button>
+          </form>
+          <div id="output" class="mt-4 text-center text-lg font-semibold"></div>
+        </div>
+      </main>
+    </div>
+  </div>
 </main>
