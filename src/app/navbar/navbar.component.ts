@@ -15,9 +15,7 @@ constructor(private router: Router) {}
 isDarkMode = false;
 
   logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userId');
-    localStorage.removeItem('firstname');
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
 
