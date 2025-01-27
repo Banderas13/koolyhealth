@@ -9,8 +9,7 @@ export class RecipeService {
   constructor(private http: HttpClient) { }
 
   private mealsUrl = 'http://127.0.0.1:8000/api/courses';
-  private ingredientsUrl = 'http://127.0.0.1:8000/api/courseingredients';
-  private ingredientDetailsUrl = 'http://127.0.0.1:8000/api/ingredients';
+  private ingredientsUrl = 'http://127.0.0.1:8000/api/joinedingredients';
   recepies = signal([]);
   recepie = signal([]);
   ingredients = signal([]);
@@ -41,20 +40,6 @@ export class RecipeService {
     .then(data => {
       let ingredients = data.filter((ingredient: any) => ingredient.courseid === id);
       this.ingredients.set(ingredients);
-      console.log(this.ingredients);
-    })
-    .catch(e => console.log(e));
-  }
-
-  getRecipeName(id: number){
-    let name;
-
-    fetch(this.ingredientDetailsUrl)
-    .then(res => res.json())
-    .then(data => {
-      let ingredient = data.find((ingredient: any) => ingredient.id === id);
-      
-      this.ingredientName = ingredient.name;
     })
     .catch(e => console.log(e));
   }

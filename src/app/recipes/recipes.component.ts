@@ -29,11 +29,6 @@ export class RecipesComponent {
     this.ingredients =this.recipeService.ingredients;
   }
 
-  getRecipeName(id: number){
-    this.recipeService.getRecipeName(id)
-    return `${this.recipeService.ingredientName}`;
-  }
-
   //splits de stappen van de bereiding op achter elke punt
   getSteps(): string[] {
     const bereiding = this.recepie()?.bereiding || '';
