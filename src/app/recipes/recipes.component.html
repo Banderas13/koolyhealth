@@ -14,7 +14,7 @@
           <!-- <div>{{recepie().bereiding}}</div> -->
           <div class="my-6 flex flex-col items-center ">
             <h2 class="mb-4 text-2xl font-semibold text-gray-900 dark:text-white ">Descprition</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat sunt beatae doloribus vel quam officiis odit, earum asperiores, molestias itaque eligendi vero ratione nam autem atque perspiciatis. Dolor, eius excepturi.</p>
+            <p>{{description()[0].tagline}}</p>
           </div>
           <hr>
           <div class="my-6 flex flex-col items-center ">
@@ -36,13 +36,6 @@
               <li *ngFor="let step of getSteps()">{{ step }}</li>
             </ol>
           </div>
-      <hr>
-      <div class="my-6 flex flex-col items-center">
-        <h2 class="mb-4 text-2xl font-semibold text-gray-900 dark:text-white">Preparation</h2>
-        <ol class="max-w-md space-y-1 list-decimal list-inside dark:text-gray-400">
-          <li *ngFor="let step of getSteps()">{{ step }}</li>
-        </ol>
-      </div>
       <hr>
     </div>
     <div class="my-6">

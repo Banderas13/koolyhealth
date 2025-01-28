@@ -10,10 +10,11 @@ export class RecipeService {
 
   private mealsUrl = 'http://127.0.0.1:8000/api/courses';
   private ingredientsUrl = 'http://127.0.0.1:8000/api/joinedingredients';
+  private blogDescription = 'http://127.0.0.1:8000/api/blogs';
   recepies = signal([]);
   recepie = signal([]);
   ingredients = signal([]);
-  ingredientName = '';
+  description = signal([]);
 
   FetchData(){
     fetch(this.mealsUrl)
@@ -42,9 +43,13 @@ export class RecipeService {
       this.ingredients.set(ingredients);
     })
     .catch(e => console.log(e));
-  }
 
-  GetRecipeIntoRecipePage(){
-    return this.recepie;
+    fetch(this.blogDescription)
+    .then(res2 => res2.json())
+    .then(data => {
+      let description = data.filter((desc: any) => desc.id === id);
+      this.description.set(description);
+    })
+    .catch(e => console.log(e));
   }
 }

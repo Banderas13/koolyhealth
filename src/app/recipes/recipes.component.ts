@@ -18,6 +18,7 @@ export class RecipesComponent {
 
   recepie:any;
   ingredients:any;
+  description:any;
 
   calculate(carbs: number, glucose: number) {
     console.log(carbs);
@@ -27,9 +28,10 @@ export class RecipesComponent {
   }
 
   ngOnInit() {
-    this.recepie = this.recipeService.GetRecipeIntoRecipePage();
-    console.log(this.recepie);
-    this.ingredients =this.recipeService.ingredients;
+    this.recepie = this.recipeService.recepie;
+    this.ingredients = this.recipeService.ingredients;
+    this.description = this.recipeService.description;
+    console.log(this.description);
   }
 
   //splits de stappen van de bereiding op achter elke punt
