@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { empty, filter, Observable } from 'rxjs';
 import { JsonPipe } from '@angular/common';
@@ -11,6 +11,7 @@ export class IngredientService {
   private selectedIngredients: any[] = [];
   private carbs: any[] = [];
   private amount: any[] = [];
+  returnValue = signal<number>(0);
 
   constructor(private http: HttpClient) {
     // Load saved ingredients from localStorage on initialization
@@ -105,15 +106,16 @@ export class IngredientService {
   }
 
   // Calculate total carbs
-  calculateTotalCarbs(): number {
-    console.log(this.carbs);
-    let returnvalue = 0;
+  calculateTotalCarbs() {
+    console.log(this.carbs, "carbs")
+    let val = 0;
     for (let i = 0; i < this.carbs.length; i++) {
-      returnvalue += this.carbs[i];
+      val += this.carbs[i];
     }
-    console.log(returnvalue);
-    return returnvalue;
+    this.returnValue.set(val);
+    console.log(this.returnValue, "return")
   }
+
 
   // Save the current list of ingredients to localStorage
   private saveToLocalStorage() {

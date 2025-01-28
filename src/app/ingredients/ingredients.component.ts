@@ -1,5 +1,5 @@
 // ingredients.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal, Signal } from '@angular/core';
 import { IngredientService } from '../shared/ingredient.service';
 import { InsulinCalculatorService } from '../shared/insulin-calculator.service';
 import { FormsModule } from '@angular/forms';
@@ -23,7 +23,7 @@ import { Router } from '@angular/router';
 })
 export class IngredientsComponent implements OnInit {
   selectedIngredients: any[] = [];
-  totalCarbs: number = 0;
+  totalCarbs = signal(0);
   // insuline = JSON.parse(localStorage.getItem('carbEffect')!);
   // correction = JSON.parse(localStorage.getItem('insulinCorrection')!);
 
@@ -77,12 +77,18 @@ export class IngredientsComponent implements OnInit {
   }
 
   calculateTotalCarbs() {
-    const total = this.ingredientService.calculateTotalCarbs();
-    this.totalCarbs = parseFloat(total.toFixed(2));
-    console.log(this.totalCarbs);
+    // const total = this.ingredientService.calculateTotalCarbs();
+    // this.totalCarbs = parseFloat(total.toFixed(2));
+    // console.log(this.totalCarbs);
+    this.ingredientService.calculateTotalCarbs();
+    const carbs = this.ingredientService.returnValue();
+   
+   this.totalCarbs.set(parseFloat(carbs.toFixed(2)))
   }
 
   reloadPage() {
     location.reload();
   }
 }
+
+
