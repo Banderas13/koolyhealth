@@ -11,6 +11,10 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
+  getName(){
+    return localStorage.getItem("firstname");
+  }
+
   // Fetches all users from the API
   getUsers(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl).pipe(
