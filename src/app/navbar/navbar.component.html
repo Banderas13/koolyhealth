@@ -3,7 +3,7 @@
       <button class="button button1" routerLink="/home">Home</button>
       <button class="button button1" routerLink="/ingredients">ingredients</button>
       <button class="button button1" routerLink="/meals">meals</button>
-      <button class="button button1 button2" routerLink="/user" *ngIf="LogedIn()">user</button>
+      <button class="button button1 button2" routerLink="/user" *ngIf="LogedIn()">{{username}}</button>
       <button class="button button1 button2" routerLink="/login" *ngIf="!LogedIn()">login</button>
       <button class="button button1 button2" routerLink="/registration" *ngIf="!LogedIn()">register</button>
       <button class="button button1 button2" (click)="logout()"  type="submit" *ngIf="LogedIn()">Logout</button>

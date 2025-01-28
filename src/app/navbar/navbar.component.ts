@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { RouterOutlet, RouterLink, Router } from '@angular/router';
 import { UserService } from '../shared/user.service';
 import { CommonModule } from '@angular/common';
@@ -16,6 +17,7 @@ export class NavbarComponent {
 
 constructor(private router: Router, private userService: UserService, ) {}
 isDarkMode = false;
+username = localStorage.getItem('firstname');
 
   logout() {
     localStorage.clear();
@@ -23,9 +25,8 @@ isDarkMode = false;
   }
 
   LogedIn(){
-    console.log(this.userService.getName());
-    
     if(this.userService.getName() !== null){
+
       console.log(true);
       return true;
     }
@@ -33,10 +34,6 @@ isDarkMode = false;
       console.log(false);
       return false;
     }
-  }
-
-  NgOnInit(){
-
   }
 
   toggleDarkMode() {
