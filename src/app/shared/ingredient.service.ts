@@ -84,25 +84,15 @@ export class IngredientService {
     return this.selectedIngredients;
   }
 
-  // Remove an ingredient and save to localStorage
-  removeIngredient(id: number) {
-    if (this.carbs.length != 1) {
-      delete this.carbs[
-        this.selectedIngredients.findIndex((ingredient) => ingredient.id === id)
-      ];
-      delete this.amount[
-        this.selectedIngredients.findIndex((ingredient) => ingredient.id === id)
-      ];
-      this.carbs = this.carbs.filter((e) => e != null);
-      this.amount = this.amount.filter((e) => e != null);
-    } else {
-      this.carbs = [];
-      this.amount = [];
+  // Remove an ingredient by index
+  removeIngredientByIndex(index: number) {
+    if (index >= 0 && index < this.selectedIngredients.length) {
+      // Remove the ingredient, carbs, and amount at the same index
+      this.selectedIngredients.splice(index, 1);
+      this.carbs.splice(index, 1);
+      this.amount.splice(index, 1);
+      this.saveToLocalStorage();
     }
-    this.selectedIngredients = this.selectedIngredients.filter(
-      (ingredient) => ingredient.id !== id
-    );
-    this.saveToLocalStorage();
   }
 
   // Calculate total carbs

@@ -70,10 +70,9 @@ export class IngredientsComponent implements OnInit {
     return 'N/A';
   }
 
-  removeIngredient(id: number) {
-    this.ingredientService.removeIngredient(id);
+  removeIngredient(index : number) {
+    this.ingredientService.removeIngredientByIndex(index);
     this.calculateTotalCarbs();
-    location.reload();
   }
 
   calculateTotalCarbs() {

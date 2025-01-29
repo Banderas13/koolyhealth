@@ -18,7 +18,7 @@
 >
   <ul class="space-y-2">
     <li
-      *ngFor="let ingredient of selectedIngredients"
+      *ngFor="let ingredient of selectedIngredients; let i = index"
       class="flex items-center justify-between"
     >
       <span>
@@ -27,7 +27,7 @@
       <button
         class="btn btn-outline-light text-white bg-orange-600 hover:bg-red-700 px-3 py-1 rounded"
         type="button"
-        (click)="removeIngredient(ingredient.id)"
+        (click)="removeIngredient(i)"
       >
         -
       </button>
