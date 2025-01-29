@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
@@ -10,6 +10,17 @@ export class UserService {
   private apiUrl = 'http://127.0.0.1:8000/api/users';
 
   constructor(private http: HttpClient) {}
+
+  firstnameUser = signal('');
+
+  getName(){
+    return localStorage.getItem("firstname");
+  }
+
+  SetSignal(){
+    let name = localStorage.getItem("firstname") || '';
+    this.firstnameUser.set(name);
+  }
 
   // Fetches all users from the API
   getUsers(): Observable<any[]> {
