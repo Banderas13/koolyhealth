@@ -26,6 +26,7 @@ export class UserComponent {
       next: () => alert('Carb effect updated successfully'),
       error: (err) => console.error('Error updating carb effect:', err),
     });
+    localStorage.setItem('carbEffect', this.carbEffect.toString())
   }
 
   // Update Insulin
@@ -34,6 +35,7 @@ export class UserComponent {
       next: () => alert('Insulin value updated successfully'),
       error: (err) => console.error('Error updating insulin value:', err),
     });
+    localStorage.setItem('insulinCorrection', this.insulin.toString())
   }
 
   // Update Password
