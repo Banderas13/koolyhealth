@@ -17,10 +17,8 @@
   class="p-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-10 w-2/4 mx-auto"
 >
   <ul class="space-y-2">
-    <li
-      *ngFor="let ingredient of selectedIngredients; let i = index"
-      class="flex items-center justify-between"
-    >
+    @for (ingredient of selectedIngredients; track $index; let i = $index) {
+    <li class="flex items-center justify-between">
       <span>
         {{ ingredient.name }} - Carbs: {{ getCarbohydrates(ingredient) }}
       </span>
@@ -32,10 +30,11 @@
         -
       </button>
     </li>
+    }
     <li class="text-center">
       <button
-      data-modal-target="static-modal" 
-      data-modal-toggle="static-modal"
+        data-modal-target="static-modal"
+        data-modal-toggle="static-modal"
         type="button"
         class="btn btn-outline-light text-white bg-lime-600 hover:bg-lime-800 px-3 py-1 rounded"
       >
@@ -87,7 +86,7 @@
 </main>
 
 <div
-  id="static-modal" 
+  id="static-modal"
   data-modal-backdrop="static"
   tabindex="-1"
   class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"

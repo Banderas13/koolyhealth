@@ -1,13 +1,31 @@
 <span>
   <nav>
-      <button class="button button1" routerLink="/home">Home</button>
-      <button class="button button1" routerLink="/ingredients">ingredients</button>
-      <button class="button button1" routerLink="/meals">meals</button>
-      <button class="button button1 button2" routerLink="/user" *ngIf="LogedIn()">{{username}}</button>
-      <button class="button button1 button2" routerLink="/login" *ngIf="!LogedIn()">login</button>
-      <button class="button button1 button2" routerLink="/registration" *ngIf="!LogedIn()">register</button>
-      <button class="button button1 button2" (click)="logout()"  type="submit" *ngIf="LogedIn()">Logout</button>
-      <button (click)="toggleDarkMode()" id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-primary-950 dark:hover:bg-primary-800 rounded-lg text-sm p-2.5">Darkmode</button>
+    <button class="button button1" routerLink="/home">Home</button>
+    <button class="button button1" routerLink="/ingredients">
+      ingredients
+    </button>
+    <button class="button button1" routerLink="/meals">meals</button>
+    @if (LogedIn()) {
+    <button class="button button1 button2" (click)="logout()" type="submit">
+      Logout
+    </button>
+    <button class="button button1 button2" routerLink="/user">
+      {{ username }}
+    </button>
+    } @else {
+    <button class="button button1 button2" routerLink="/login">login</button>
+    <button class="button button1 button2" routerLink="/registration">
+      register
+    </button>
+    }
+    <button
+      (click)="toggleDarkMode()"
+      id="theme-toggle"
+      type="button"
+      class="text-gray-500 dark:text-gray-400 hover:bg-primary-950 dark:hover:bg-primary-800 rounded-lg text-sm p-2.5"
+    >
+      Darkmode
+    </button>
   </nav>
 </span>
 
