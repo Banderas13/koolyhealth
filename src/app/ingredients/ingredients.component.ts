@@ -39,12 +39,12 @@ export class IngredientsComponent implements OnInit {
 
     // console.log(this.selectedIngredients);
     // check if there has been a reload. if not it makes a reload (fix for add button and total carbs)
-    if (!localStorage.getItem('reload')) {
+    /*if (!localStorage.getItem('reload')) {
       localStorage.setItem('reload', 'no reload');
       location.reload();
     } else {
       localStorage.removeItem('reload');
-    }
+    }*/
   }
 
   calculate(carbs: number, glucose: number) {
@@ -83,11 +83,7 @@ export class IngredientsComponent implements OnInit {
     const carbs = this.ingredientService.returnValue();
    
    this.totalCarbs.set(parseFloat(carbs.toFixed(2)))
-  }
-
-  reloadPage() {
-    location.reload();
-  }
+  } 
 }
 
 
