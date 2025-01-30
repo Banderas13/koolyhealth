@@ -52,7 +52,7 @@ export class IngredientService {
     this.saveToLocalStorage();
   }
 
-  GetCarbs(ingredient: any, id: number) {
+  GetCarbs(ingredient: any, index: number) {
     const carbs = ingredient.nutrition?.nutrients?.find(
       (nutrient: any) => nutrient.name === 'Carbohydrates'
     );
@@ -67,15 +67,15 @@ export class IngredientService {
     return (
       (carbs.amount / servingsize) *
       this.amount[
-        this.selectedIngredients.findIndex((ingredient) => ingredient.id === id)
+        index
       ]
     );
   }
 
-  GetAmount(ingredient: any, id: number) {
+  GetAmount(index : number) {
     // console.log("hier geraak ik ook");
     return this.amount[
-      this.selectedIngredients.findIndex((ingredient) => ingredient.id === id)
+      index
     ];
   }
 
