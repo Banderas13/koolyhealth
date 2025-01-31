@@ -1,33 +1,28 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RecipeService } from '../shared/recipe.service';
-import { JsonPipe } from '@angular/common';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-meals',
-  imports: [JsonPipe],
   templateUrl: './meals.component.html',
-  styleUrl: './meals.component.css'
+  styleUrl: './meals.component.css',
 })
 export class MealsComponent {
+  constructor(private recipeService: RecipeService, private router: Router) {}
 
-  constructor(private recipeService: RecipeService, private router: Router){}
+  recepies: any;
 
-  recepies:any;
-
-  GetRecipes(){
+  GetRecipes() {
     this.recipeService.FetchData();
   }
 
   ngOnInit() {
     this.GetRecipes();
-    this.recepies =  this.recipeService.recepies
+    this.recepies = this.recipeService.recepies;
   }
 
-  CheckRecipe(id: any){
+  CheckRecipe(id: any) {
     this.recipeService.FetchRecepie(id);
     this.router.navigate(['/recipes']);
   }
-
 }
-

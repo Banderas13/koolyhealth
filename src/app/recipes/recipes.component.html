@@ -7,9 +7,13 @@
   </h2>
 </div>
 <main class="main">
-  <h2 class="mb-10 text-4xl font-semibold text-gray-900 dark:text-white text-center">
+  @if (description()?.length) {
+  <h2
+    class="mb-10 text-4xl font-semibold text-gray-900 dark:text-white text-center"
+  >
     {{ description()[0].tagline }}
   </h2>
+  }
   <div>
     <div class="w-5/6 mx-auto">
       <div class="my-6 flex flex-col items-center">
@@ -29,9 +33,11 @@
         <h2 class="mb-4 text-2xl font-semibold text-gray-900 dark:text-white">
           Preparation
         </h2>
-        <ol class="max-w-md space-y-1 list-decimal list-inside dark:text-gray-400">
+        <ol
+          class="max-w-md space-y-1 list-decimal list-inside dark:text-gray-400"
+        >
           @for (step of getSteps(); track $index) {
-            <li>{{ step }}</li>
+          <li>{{ step }}</li>
           }
         </ol>
       </div>
@@ -59,6 +65,7 @@
               >
               <input
                 type="number"
+                id="glucose"
                 #glucose
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 placeholder="mg/dl"
