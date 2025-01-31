@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 body {
-    background-color: #ffffff; /* Light mode background */
-    color: #000000; /* Light mode text */
-  }
-  
-  body.dark {
-    background-color: #111827; /* Dark mode background */
-    color: #f7fafc; /* Dark mode text */
-  }
+  background-color: #ffffff; /* Light mode background */
+  color: #000000; /* Light mode text */
+}
+
+body.dark {
+  background-color: #111827; /* Dark mode background */
+  color: #f7fafc; /* Dark mode text */
+}

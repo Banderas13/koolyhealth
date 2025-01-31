@@ -1,7 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { empty, filter, Observable } from 'rxjs';
-import { JsonPipe } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +13,7 @@ export class IngredientService {
   returnValue = signal<number>(0);
 
   constructor(private http: HttpClient) {
-    // Load saved ingredients from localStorage on initialization
+    // Load saved ingredients and carb info from localStorage on initialization
     const savedIngredients = localStorage.getItem('selectedIngredients');
     const savedCarbs = localStorage.getItem('carbs');
     const savedAmount = localStorage.getItem('amount');
@@ -64,19 +63,12 @@ export class IngredientService {
     // console.log(this.amount);
     // console.log(this.amount[this.selectedIngredients.findIndex(ingredient => ingredient.id === id)]);
     // console.log(carbs.amount/servingsize*this.amount[this.selectedIngredients.findIndex(ingredient => ingredient.id === id)]);
-    return (
-      (carbs.amount / servingsize) *
-      this.amount[
-        index
-      ]
-    );
+    return (carbs.amount / servingsize) * this.amount[index];
   }
 
-  GetAmount(index : number) {
+  GetAmount(index: number) {
     // console.log("hier geraak ik ook");
-    return this.amount[
-      index
-    ];
+    return this.amount[index];
   }
 
   // Get selected ingredients
@@ -97,15 +89,14 @@ export class IngredientService {
 
   // Calculate total carbs
   calculateTotalCarbs() {
-    console.log(this.carbs, "carbs")
+    // console.log(this.carbs, "carbs")
     let val = 0;
     for (let i = 0; i < this.carbs.length; i++) {
       val += this.carbs[i];
     }
     this.returnValue.set(val);
-    console.log(this.returnValue, "return")
+    // console.log(this.returnValue, "return")
   }
-
 
   // Save the current list of ingredients to localStorage
   private saveToLocalStorage() {
