@@ -1,8 +1,12 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormGroup,
+  Validators,
+  NonNullableFormBuilder,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-
 
 @Component({
   selector: 'app-personal-data',

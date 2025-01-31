@@ -6,7 +6,7 @@ import { FlowbiteThemeDirective } from 'flowbite-angular/theme';
 
 @Component({
   selector: 'app-root',
-  imports: [ NavbarComponent ],
+  imports: [NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   standalone: true,
@@ -15,7 +15,7 @@ import { FlowbiteThemeDirective } from 'flowbite-angular/theme';
 export class AppComponent implements OnInit {
   title = 'CarbWatch';
   isDarkMode = false;
-  
+
   ngOnInit(): void {
     initFlowbite();
 

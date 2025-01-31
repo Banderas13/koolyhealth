@@ -15,23 +15,26 @@ export class RecipesComponent {
     private recipeService: RecipeService
   ) {}
 
-
-  recepie:any;
-  ingredients:any;
-  description:any;
+  recepie: any;
+  ingredients: any;
+  description: any;
 
   calculate(carbs: number, glucose: number) {
-    console.log(carbs);
-    console.log(glucose);
-    document.getElementById('output')!.innerHTML =
-      this.insulinCalculatorService.Calculate(carbs, glucose);
+    // console.log(carbs);
+    // console.log(glucose);
+    document.getElementById(
+      'output'
+    )!.innerHTML = `You Need ${this.insulinCalculatorService.Calculate(
+      carbs,
+      glucose
+    )} Units`;
   }
 
   ngOnInit() {
     this.recepie = this.recipeService.recepie;
     this.ingredients = this.recipeService.ingredients;
     this.description = this.recipeService.description;
-    console.log(this.description);
+    // console.log(this.description);
   }
 
   //splits de stappen van de bereiding op achter elke punt

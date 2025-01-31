@@ -12,8 +12,8 @@ export class InsulinCalculatorService {
   ngOnInit(): void {
     this.insuline = JSON.parse(localStorage.getItem('carbEffect')!);
     this.correction = JSON.parse(localStorage.getItem('insulinCorrection')!);
-    console.log(this.insuline);
-    console.log(this.correction);
+    // console.log(this.insuline);
+    // console.log(this.correction);
   }
 
   //calculate carbs
