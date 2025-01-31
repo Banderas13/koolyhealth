@@ -20,7 +20,7 @@
     @for (ingredient of selectedIngredients; track $index; let i = $index) {
     <li class="flex items-center justify-between">
       <span>
-        {{ ingredient.name }} - Carbs: {{ getCarbohydrates(ingredient) }}
+        {{ ingredient.name }} - Carbs: {{ getCarbohydrates(ingredient, $index) }}
       </span>
       <button
         class="btn btn-outline-light text-white bg-orange-600 hover:bg-red-700 px-3 py-1 rounded"
