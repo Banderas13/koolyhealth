@@ -32,9 +32,9 @@
             id="firstname"
             formControlName="firstname"
             type="text"
+            autocomplete="given-name"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="firstname"
-            required=""
           />
           @if (personalForm.get('firstname')?.invalid &&
           personalForm.get('firstname')?.touched) {
@@ -53,9 +53,9 @@
             id="lastname"
             formControlName="lastname"
             type="text"
+            autocomplete="family-name"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="lastname"
-            required=""
           />
           @if (personalForm.get('lastname')?.invalid &&
           personalForm.get('lastname')?.touched) {
@@ -74,6 +74,7 @@
             id="bdate"
             formControlName="bdate"
             type="date"
+            autocomplete="bday"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
           @if (personalForm.get('bdate')?.invalid &&
@@ -93,9 +94,9 @@
             id="username"
             formControlName="username"
             type="email"
+            autocomplete="email"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="name@company.com"
-            required=""
           />
           @if (personalForm.get('username')?.invalid &&
           personalForm.get('username')?.touched) {
@@ -115,8 +116,8 @@
             formControlName="password"
             type="password"
             placeholder="••••••••"
+            autocomplete="new-password"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            required=""
           />
           @if (personalForm.get('password')?.invalid &&
           personalForm.get('password')?.touched) {
