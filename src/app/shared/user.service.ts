@@ -13,26 +13,13 @@ export class UserService {
 
   firstnameUser = signal('');
 
-  getName(){
-    return localStorage.getItem("firstname");
+  getName() {
+    return localStorage.getItem('firstname');
   }
 
-  SetSignal(){
-    let name = localStorage.getItem("firstname") || '';
+  SetSignal() {
+    let name = localStorage.getItem('firstname') || '';
     this.firstnameUser.set(name);
-  }
-
-  // Fetches all users from the API
-  getUsers(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl).pipe(
-      map((users) =>
-        users.map((user) => ({
-          id: user.id,
-          username: user.email,
-          password: user.password,
-        }))
-      )
-    );
   }
 
   // Checks user credentials and returns a valid token or null and user ID and firstname
