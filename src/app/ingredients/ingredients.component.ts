@@ -39,12 +39,12 @@ export class IngredientsComponent implements OnInit {
 
     // console.log(this.selectedIngredients);
     // check if there has been a reload. if not it makes a reload (fix for add button and total carbs)
-    if (!localStorage.getItem('reload')) {
+    /*if (!localStorage.getItem('reload')) {
       localStorage.setItem('reload', 'no reload');
       location.reload();
     } else {
       localStorage.removeItem('reload');
-    }
+    }*/
   }
 
   calculate(carbs: number, glucose: number) {
@@ -52,17 +52,16 @@ export class IngredientsComponent implements OnInit {
       this.insulinCalculatorService.Calculate(carbs, glucose);
   }
 
-  getCarbohydrates(ingredient: any): string {
+  getCarbohydrates(ingredient: any, index : number): string {
     const carbs = ingredient.nutrition?.nutrients?.find(
       (nutrient: any) => nutrient.name === 'Carbohydrates'
     );
     if (carbs) {
       const carbValue = parseFloat(
-        this.ingredientService.GetCarbs(ingredient, ingredient.id).toFixed(2)
+        this.ingredientService.GetCarbs(ingredient, index).toFixed(2)
       ); // Round carbs to 2 decimal places
       const amountValue = this.ingredientService.GetAmount(
-        ingredient,
-        ingredient.id
+        index
       );
       return `${carbValue}${carbs.unit} Amount:${amountValue}${carbs.unit}`;
     }
@@ -83,11 +82,7 @@ export class IngredientsComponent implements OnInit {
     const carbs = this.ingredientService.returnValue();
    
    this.totalCarbs.set(parseFloat(carbs.toFixed(2)))
-  }
-
-  reloadPage() {
-    location.reload();
-  }
+  } 
 }
 
 
